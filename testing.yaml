@@ -1,86 +1,76 @@
 apiVersion: smarttuning.ibm.com/v1alpha2
-data: 
-  - 
-    name: svc-0-mock-configmap
-    tunables: 
-      number: 
-        - 
-          lower: 
-            value: -10
-          name: X_VALUE
-          upper: 
-            value: 10
-        - 
-          lower: 
-            value: -10
-          name: Y_VALUE
-          upper: 
-            value: 10
-        - 
-          lower: 
-            value: -4
-          name: A_VALUE
-          real: true
-          upper: 
-            value: 4
-        - 
-          lower: 
-            value: -250
-          name: B_VALUE
-          real: true
-          upper: 
-            value: 250
-        - 
-          lower: 
-            value: -10
-          name: C_VALUE
-          real: true
-          upper: 
-            value: 10
-        - 
-          lower: 
-            value: 1.0e-15
-          name: D_VALUE
-          step: 10
-          upper: 
-            value: 1.0e+15
-        - 
-          lower: 
-            value: -2.5
-          name: E_VALUE
-          real: true
-          upper: 
-            value: 2.5
-        - 
-          lower: 
-            value: 5
-          name: F_VALUE
-          real: true
-          upper: 
-            value: 10
-        - 
-          lower: 
-            value: -3
-          name: G_VALUE
-          real: true
-          upper: 
-            value: 3
-        - 
-          lower: 
-            value: -25
-          name: H_VALUE
-          real: true
-          upper: 
-            value: 25
 kind: SearchSpace
-metadata: 
+data:
+  -
+    name: svc-0-mock-configmap
+    tunables:
+      number:
+        - name: "X_VALUE"
+          lower:
+            value: -10
+          upper:
+            value: 10
+        - name: "Y_VALUE"
+          lower:
+            value: -10
+          upper:
+            value: 10
+        - name: "A_VALUE"
+          lower:
+            value: -4
+          upper:
+            value: 4
+          real: true
+        - name: "B_VALUE"
+          real: true
+          lower:
+            value: -250
+          upper:
+            value: 250
+        - name: "C_VALUE"
+          lower:
+            value: -10
+          upper:
+            value: 10
+          real: true
+        - name: "F_VALUE"
+          lower:
+            value: 5
+          upper:
+            value: 10
+          real: true
+        - name: "G_VALUE"
+          lower:
+            value: -3
+          upper:
+            value: 3
+          real: true
+        - name: "E_VALUE"
+          lower:
+            value: -2
+          upper:
+            value: 2
+          real: true
+        - name: "H_VALUE"
+          lower:
+            value: -25
+          upper:
+            value: 25
+          real: true
+        - name: "D_VALUE"
+          lower:
+            value: 0
+          upper:
+            value: 100
+          step: 10
+metadata:
   name: svc-0-mock-searchspace
   namespace: uapp
-spec: 
+spec:
   deployment: svc-0-mock
-  manifests: 
-    - 
+  manifests:
+    -
       name: svc-0-mock-configmap
       type: configMap
   namespace: uapp
-  service: svc-0-mock
+  service: svc-0-moc  
