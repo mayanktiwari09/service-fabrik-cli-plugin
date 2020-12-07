@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    injection.smarttuning.ibm.com: 'true'
+  labels:
+    app: svc-0-mock
+  name: svc-0-mock
+  namespace: uapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-0-mock
+  template:
+    metadata:
+      labels:
+        app: svc-0-mock
+    spec:
+      containers:
+      - args:
+        - --name=$(NAME)
+        - --zipkin=$(ZIPKIN):6831
+        - --sampling=1
+        - --msg-size=$(MSG_SIZE)
+        - --msg-time=$(MSG_TIME)
+        - --x=$(X_VALUE)
+        - --y=$(Y_VALUE)
+        - --a=$(A_VALUE)
+        - --b=$(B_VALUE)
+        - --c=$(C_VALUE)
+        - --d=$(D_VALUE)
+        - --e=$(E_VALUE)
+        - --f=$(F_VALUE)
+        - --g=$(G_VALUE)
+        - --h=$(H_VALUE)
+        - svc-2-mock.uapp.svc.cluster.local
+        env:
+        - name: ZIPKIN
+          value: opentrace-jaeger-svc.default.svc.cluster.local
+        envFrom:
+        - configMapRef:
+            name: svc-0-mock-configmap
+        image: adalrsjr1/microservice:latest
+        imagePullPolicy: Always
+        name: svc-0-mock
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: '1'
+            memory: 1536Mi
+      nodeSelector:
+        beta.kubernetes.io/os: linux
